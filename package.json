@@ -12,8 +12,8 @@
   "homepage": "https://github.com/chbrown/yaml-utils",
   "author": "Christopher Brown <io@henrian.com>",
   "dependencies": {
-    "js-yaml": "3.2.2",
-    "optimist": "0.6.0"
+    "js-yaml": "^3.11.0",
+    "optimist": "0.6.1"
   },
   "bin": {
     "json2yaml": "json2yaml",
