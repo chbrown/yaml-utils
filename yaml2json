@@ -10,6 +10,16 @@ function readToEnd(stream, callback) {
   .on('end', () => callback(null, chunks))
 }
 
+function convert(inputStream, outputStream, callback) {
+  readToEnd(inputStream, (err, inputChunks) => {
+    if (err) return callback(err)
+    const inputString = Buffer.concat(inputChunks).toString()
+    const object = safeLoad(inputString)
+    const outputString = JSON.stringify(object)
+    outputStream.write(outputString, callback)
+  })
+}
+
 const argparser = optimist
 .usage(`Usage: yaml2json < data.yaml
 
@@ -26,11 +36,7 @@ else if (process.stdin.isTTY) {
   throw new Error('YAML must be piped in on STDIN')
 }
 else {
-  readToEnd(process.stdin, function(err, chunks) {
+  convert(process.stdin, process.stdout, err => {
     if (err) throw err
-    const yaml = Buffer.concat(chunks)
-    const obj = safeLoad(yaml)
-    const json = JSON.stringify(obj)
-    console.log(json)
   })
 }
