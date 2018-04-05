@@ -1,0 +1,23 @@
+{
+  "name": "yaml-utils",
+  "version": "1.0.0",
+  "description": "CLI tools for converting JSON to YAML and vice versa",
+  "license": "MIT",
+  "keywords": [
+    "cli",
+    "json",
+    "yaml"
+  ],
+  "repository": "git://github.com/chbrown/yaml-utils.git",
+  "homepage": "https://github.com/chbrown/yaml-utils",
+  "author": "Christopher Brown <io@henrian.com>",
+  "dependencies": {
+    "js-yaml": "3.2.2",
+    "optimist": "0.6.0",
+    "streaming": "0.3.14"
+  },
+  "bin": {
+    "json2yaml": "json2yaml",
+    "yaml2json": "yaml2json"
+  }
+}
