@@ -26,7 +26,8 @@ function main() {
 
   Convert YAML file to JSON`)
   .describe({help: 'print this help message'})
-  .boolean('help')
+  .boolean(['help'])
+  .alias({help: 'h'})
 
   const argv = argparser.argv
 
