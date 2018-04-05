@@ -1,5 +1,6 @@
 #!/usr/bin/env node
-const js_yaml = require('js-yaml')
+const {safeLoad} = require('js-yaml')
+const optimist = require('optimist')
 
 function readToEnd(stream, callback) {
   const chunks = []
@@ -9,7 +10,7 @@ function readToEnd(stream, callback) {
   .on('end', () => callback(null, chunks))
 }
 
-const optimist = require('optimist')
+const argparser = optimist
 .usage([
   'Usage: yaml2json < data.yaml',
   '',
@@ -18,10 +19,10 @@ const optimist = require('optimist')
 .describe({help: 'print this help message'})
 .boolean('help')
 
-const argv = optimist.argv
+const argv = argparser.argv
 
 if (argv.help) {
-  optimist.showHelp()
+  argparser.showHelp()
 }
 else if (process.stdin.isTTY) {
   throw new Error('YAML must be piped in on STDIN')
@@ -30,7 +31,7 @@ else {
   readToEnd(process.stdin, function(err, chunks) {
     if (err) throw err
     const yaml = Buffer.concat(chunks)
-    const obj = js_yaml.safeLoad(yaml)
+    const obj = safeLoad(yaml)
     const json = JSON.stringify(obj)
     console.log(json)
   })
