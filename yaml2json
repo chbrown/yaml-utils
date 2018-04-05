@@ -20,23 +20,29 @@ function convert(inputStream, outputStream, callback) {
   })
 }
 
-const argparser = optimist
-.usage(`Usage: yaml2json < data.yaml
+function main() {
+  const argparser = optimist
+  .usage(`Usage: yaml2json < data.yaml
 
-Convert YAML file to JSON`)
-.describe({help: 'print this help message'})
-.boolean('help')
+  Convert YAML file to JSON`)
+  .describe({help: 'print this help message'})
+  .boolean('help')
 
-const argv = argparser.argv
+  const argv = argparser.argv
 
-if (argv.help) {
-  argparser.showHelp()
+  if (argv.help) {
+    argparser.showHelp()
+  }
+  else if (process.stdin.isTTY) {
+    throw new Error('YAML must be piped in on STDIN')
+  }
+  else {
+    convert(process.stdin, process.stdout, err => {
+      if (err) throw err
+    })
+  }
 }
-else if (process.stdin.isTTY) {
-  throw new Error('YAML must be piped in on STDIN')
-}
-else {
-  convert(process.stdin, process.stdout, err => {
-    if (err) throw err
-  })
+
+if (require.main === module) {
+  main()
 }
