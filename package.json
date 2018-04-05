@@ -1,6 +1,6 @@
 {
   "name": "yaml-utils",
-  "version": "1.0.1",
+  "version": "1.1.0",
   "description": "CLI tools for converting JSON to YAML and vice versa",
   "license": "MIT",
   "keywords": [
