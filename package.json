@@ -13,8 +13,7 @@
   "author": "Christopher Brown <io@henrian.com>",
   "dependencies": {
     "js-yaml": "3.2.2",
-    "optimist": "0.6.0",
-    "streaming": "0.3.14"
+    "optimist": "0.6.0"
   },
   "bin": {
     "json2yaml": "json2yaml",

@@ -1,6 +1,13 @@
 #!/usr/bin/env node
-const streaming = require('streaming')
 const js_yaml = require('js-yaml')
+
+function readToEnd(stream, callback) {
+  const chunks = []
+  return stream
+  .on('error', callback)
+  .on('data', chunk => chunks.push(chunk))
+  .on('end', () => callback(null, chunks))
+}
 
 const optimist = require('optimist')
 .usage([
@@ -20,7 +27,7 @@ else if (process.stdin.isTTY) {
   throw new Error('YAML must be piped in on STDIN')
 }
 else {
-  streaming.readToEnd(process.stdin, function(err, chunks) {
+  readToEnd(process.stdin, function(err, chunks) {
     if (err) throw err
     const yaml = Buffer.concat(chunks)
     const obj = js_yaml.safeLoad(yaml)
