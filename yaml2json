@@ -11,11 +11,9 @@ function readToEnd(stream, callback) {
 }
 
 const argparser = optimist
-.usage([
-  'Usage: yaml2json < data.yaml',
-  '',
-  'Convert YAML file to JSON',
-].join('\n'))
+.usage(`Usage: yaml2json < data.yaml
+
+Convert YAML file to JSON`)
 .describe({help: 'print this help message'})
 .boolean('help')
 
