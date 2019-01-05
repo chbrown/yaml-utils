@@ -4,6 +4,10 @@
 
 CLI tools for converting JSON to YAML and vice versa.
 
+```sh
+npm install -g yaml-utils
+```
+
 This package provides two `bin` scripts:
 
 
@@ -50,5 +54,5 @@ yaml2json < package.yaml | jq .
 
 ## License
 
-Copyright © 2014–2018 Christopher Brown.
-[MIT Licensed](https://chbrown.github.io/licenses/MIT/#2014-2018).
+Copyright © 2014–2019 Christopher Brown.
+[MIT Licensed](https://chbrown.github.io/licenses/MIT/#2014-2019).
